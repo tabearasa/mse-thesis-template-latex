@@ -1,0 +1,46 @@
+%%% ============ Acronyms Glossary Style ============ %%%
+\setlength{\extrarowheight}{14pt}
+\newglossarystyle{acrotable}{%
+\setglossarystyle{long3col}% base this style on the list style
+\renewenvironment{theglossary}{% Change the table type --> 3 columns
+  \begin{longtable}{m{0.35\glsdescwidth} m{0.45\glsdescwidth} m}}
+  {\end{longtable}}%
+%
+\renewcommand*{\glossaryheader}{%  Change the table header
+  Acronym & Description &  \\
+  \hline
+  \endhead}
+\renewcommand*{\glossentry}[2]{%  Change the displayed items
+\glstarget{##1}{\glossentryname{##1}} %
+& \glossentrydesc{##1} \tabularnewline
+}
+}
+\setlength{\extrarowheight}{2mm} %MEASURE!!!
+%%% ============ Acronyms ============ %%%
+\newglossaryentry{cad}
+{
+  name={CAD},
+  description={Computer-Aided Design},
+  first={Computer-Aided Design (CAD)},
+  firstplural={Computer-Aided Designs (CADs)},
+  text={CAD},
+  plural={CADs}
+}
+
+\newglossaryentry{csg}
+{
+  name={CSG},
+  description={Constructive Solid Geometry},
+  first={constructive solid geometry (CSG)},
+  text={CSG}
+}
+
+\newglossaryentry{nn}
+{
+  name={NN},
+  description={Neural Network},
+  first={neural network (NN)},
+  firstplural={neural networks (NNs)},
+  text={NN},
+  plural={NNs}
+}

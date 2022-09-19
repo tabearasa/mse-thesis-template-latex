@@ -1,0 +1,139 @@
+%%% ============ Pagestyles ============ %%%
+
+%%% ======= Chapters Pagestyle ======= %%%
+\fancypagestyle{chapters}{
+\fancyhf{}
+
+\renewcommand{\footrulewidth}{0.3pt}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\lhead{\nouppercase{\leftmark}}
+
+\lfoot{
+  \begin{minipage}{\textwidth}
+  \parbox{0.35\linewidth}{\includegraphics[width=0.35\textwidth]{logo2.jpg}}\hfill
+  \parbox{0.6\linewidth}{\footnotesize Institute for Machine Elements and Systems Engineering\\
+                          Univ.-Prof. Dr.-Ing. Georg Jacobs}\hfill
+  \parbox{0.02\linewidth}{\raggedleft \footnotesize \thepage}%
+  \end{minipage}
+}
+
+%http://tug.ctan.org/tex-archive/macros/latex/contrib/titlesec/titlesec.pdf
+% Textformat Title
+\titleformat{\chapter}[hang]{\Large \bfseries}{\thechapter}{10pt}{}[]
+\titleformat{\section}[hang]{\large \bfseries}{\thesection}{5pt}{}[]
+\titleformat{\subsection}[hang]{\normalsize \bfseries}{\thesubsection}{10pt}{}[]
+\titleformat{\subsubsection}[hang]{\normalsize \bfseries}{\thesubsubsection}{3pt}{}[]
+
+% Spacing befor and after title
+\titlespacing{\chapter}{0pt}{-27pt}{0pt} %...{left spacing}{before spacing}{after spacing}
+\titlespacing{\section}{0pt}{18.14pt}{5.95pt}
+\titlespacing{\subsection}{0pt}{18.14pt}{5.95pt}
+\titlespacing{\subsubsection}{0pt}{18.14pt}{5.95pt}
+}
+%%% ======= First Pagestyle ======= %%%
+\fancypagestyle{first}{
+\fancyhf{}
+
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\lfoot{
+  \begin{minipage}{\textwidth}
+  \parbox{0.3\linewidth}{}\hfill
+  \parbox{0.5\linewidth}{}\hfill
+  \parbox{0.02\linewidth}{\raggedleft \footnotesize \thepage}
+  \end{minipage}
+}
+\titleformat{\chapter}[hang]{\large \bfseries}{}{10pt}{}[]
+\titlespacing{\chapter}{0pt}{0pt}{5pt}
+}
+%%% ======= First Bib and Attachment ======= %%%
+\fancypagestyle{bib} {
+\fancyhf{}
+
+\lhead{\empty}
+
+\renewcommand{\footrulewidth}{0.3pt}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\lfoot{
+  \begin{minipage}{\textwidth}
+  \parbox{0.35\linewidth}{\includegraphics[width=0.35\textwidth]{logo2.png}}\hfill
+  \parbox{0.6\linewidth}{\footnotesize Institute for Machine Elements and Systems Engineering\\
+                          Univ.-Prof. Dr.-Ing. Georg Jacobs}\hfill
+  \parbox{0.02\linewidth}{\raggedleft \footnotesize \thepage}%
+  \end{minipage}
+}
+
+\titleformat{\chapter}[hang]{\large \bfseries}{}{10pt}{}[]
+\titlespacing{\chapter}{0pt}{-30pt}{10pt}
+}
+
+%%% ============ Colours ============ %%% 
+\definecolor{blue}{RGB}{0,84,159}
+\definecolor{red}{RGB}{204,7,30}
+\definecolor{gray_0}{RGB}{236, 237, 237}
+\definecolor{gray_1}{RGB}{207, 209, 210}
+
+
+%https://tex.stackexchange.com/questions/477253/how-to-remove-blank-page-before-my-new-report-chapter
+%%% ==== Code for setting pagestyle of the first page of a chapter to fancy ==== %%%
+\let\oldchapter\chapter
+\makeatletter
+\def\chapter{%
+\@ifstar{\@Starred}{\@nonStarred}%
+}
+\def\@Starred{%
+\@ifnextchar[%
+{\GenericWarning{}{Warning: A starred section can not have parameters. I am going to ignore them!}\@StarredWith}%
+{\@StarredWithout}%
+}      
+\def\@StarredWith[#1]#2{%
+\oldchapter*{#2}%
+\thispagestyle{fancy}
+}
+\def\@StarredWithout#1{
+\oldchapter*{#1}%
+\thispagestyle{fancy}
+}
+\def\@nonStarred{%
+\@ifnextchar[%
+{\@nonStarredWith}%
+{\@nonStarredWithout}%
+}
+\def\@nonStarredWith[#1]#2{%
+\oldchapter[#1]{#2}%
+\thispagestyle{fancy}
+}
+\def\@nonStarredWithout#1{%
+\oldchapter{#1}%
+\thispagestyle{fancy}
+}
+\makeatother
+
+%https://tex.stackexchange.com/questions/69321/spacing-between-chapters-in-list-of-tables
+%%% ==== Spacing in Lof and LoT ==== %%%
+\makeatletter
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                       \if@mainmatter
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                                   {\protect\numberline{\thechapter}#1}%
+                       \else
+                         \addcontentsline{toc}{chapter}{#1}%
+                       \fi
+                    \else
+                      \addcontentsline{toc}{chapter}{#1}%
+                    \fi
+                    \chaptermark{#1}%
+%                    \addtocontents{lof}{\protect\addvspace{10\p@}}
+%                    \addtocontents{lot}{\protect\addvspace{10\p@}}
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
+\makeatother

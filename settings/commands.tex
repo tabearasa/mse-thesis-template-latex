@@ -1,0 +1,13 @@
+% Caption Numbering
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+%Spacing Lines in TOC
+\pretocmd{\chapter}{\addtocontents{toc}{\protect\addvspace{3pt}}}{}{}
+\pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{3pt}}}{}{}
+\pretocmd{\subsection}{\addtocontents{toc}{\protect\addvspace{3pt}}}{}{}
+\pretocmd{\subsubsection}{\addtocontents{toc}{\protect\addvspace{3pt}}}{}{}
+
+% References of chapter numbers
+\NewDocumentCommand{\chapref}{s m}{Chapter~\ref{#2}\IfBooleanF{#1}}
+%capitalization for Chapter!

@@ -1,0 +1,79 @@
+%TODO:
+%bibliography!!!
+
+
+\makeatletter
+\renewcommand\@xipt{11}
+\makeatother
+
+\documentclass[a4paper, 11pt]{report}
+
+\input{settings/packages}
+\input{settings/style}
+\input{settings/commands}
+
+\makeindex
+
+\input{glossaries/acronyms}
+\input{glossaries/symbols}
+
+%%% ============ Setup ============ %%%
+%Compiler: Lualatex or XeLatex
+%%% ============ Document ============ %%%
+
+\pagenumbering{gobble}
+\begin{document}
+
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}} %Numbering like: Figure 1.1
+\renewcommand{\thetable}{\thechapter.\arabic{table}}   %Numbering like: Table 1.1
+
+\input{pages/cover}
+\includepdf[pages=1]{declaration.pdf}
+
+\pagestyle{first}
+\chapter*{Abstract}
+\input{chapters/00_abstract}
+
+\newpage
+\setcounter{page}{1}
+\pagenumbering{Roman}
+
+\tableofcontents
+
+%\printnoidxglossary[type=symbols, style=symbunitlong]
+\printnoidxglossary[title=Acronyms, style=acrotable]
+\setlength{\cftfigindent}{0pt}  % remove indentation from figures in lof
+\setlength{\cfttabindent}{0pt}  % remove indentation from tables in lot
+\setlength\cftparskip{15pt} % distance between lines in lof and lot	
+\setlength{\cftbeforechapskip}{0pt}
+\listoffigures
+\listoftables
+
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+% Acknowledgements
+%\chapter*{Acknowledgements}
+%\thispagestyle{empty}
+%\begin{center}
+%I like to acknowledge ... only for my personal version!
+%
+%\end{center}
+%\clearpage
+
+
+\pagestyle{chapters}
+\chapter{Introduction}
+\input{chapters/01_section}
+
+
+\bibliographystyle{plainnat}
+\pagestyle{bib}
+\bibliography{chapters/bibliography}
+
+\appendix
+\chapter{Appendix}
+\input{chapters/appendix}
+
+\end{document}

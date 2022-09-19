@@ -1,0 +1,120 @@
+%%% ============ Packages ============ %%%
+\usepackage[a4paper,left=20mm, right=20mm, top=13mm, bottom=10mm, headsep=10pt, footskip=15mm, includehead, includefoot]{geometry} %% Measure!!!! --> showframe
+
+\usepackage[11pt]{moresize}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman, main=english]{babel}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{import}
+\usepackage{setspace} %linespacing
+
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tabularx}
+\usepackage{tabu}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{fancyvrb} % use of fancy verbatim
+
+%%% ==== Notes  ==== %%%
+\newcommand\unsure[1]{\textcolor{orange}{Unsure: #1}}
+\newcommand\todo[1]{\textcolor{red}{Todo: #1}}
+
+\usepackage{fancyhdr}               
+\graphicspath{{images/}} 
+\usepackage{titlesec}   %Package for title position
+
+\usepackage{array}
+\usepackage{pdfpages}
+\usepackage[round]{natbib}
+\setcitestyle{aysep={}}
+
+
+%%% ==== Glossary ===== %%%
+\usepackage[toc, nogroupskip]{glossaries}
+\usepackage{glossaries-extra}
+\setlength{\glsdescwidth}{20cm} 
+\newglossary[syg]{symbols}{syd}{syn}{Symbols}
+\glsaddkey{unit}{\glsentrytext{\glslabel}}{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+\makenoidxglossaries
+
+%%% ===== ToC, LoT, LoF ==== %%%
+\usepackage[nottoc]{tocbibind}
+\usepackage[titles]{tocloft}
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{0.1} % distance between dots
+
+\renewcommand{\cftfigaftersnum}{:}
+\renewcommand{\cfttabaftersnum}{:}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\setlength{\cftbeforechapskip}{0pt}
+\renewcommand{\cftchapfont}{\normalsize}
+\renewcommand{\cftchappagefont}{\normalsize}
+
+\renewcommand{\cftfigpresnum}{Figure } % put this before caption number
+\setlength{\cftfignumwidth}{80pt} % increase space for augmented caption number
+\renewcommand{\cfttabpresnum}{Table } % put this before caption number
+\setlength{\cfttabnumwidth}{80pt} % increase space for augmented caption number
+
+%%% ===== Captions ==== %%%
+\usepackage{caption}
+\DeclareCaptionFormat{myformattable}{#1#2\quad#3}
+\DeclareCaptionFormat{myformatfigure}{#1#2\quad#3}
+\captionsetup[table]{format = myformattable,
+              labelsep = colon,
+              indention = 54pt,
+              justification   = justified,
+              singlelinecheck = false,
+              labelfont = footnotesize,
+              textfont = footnotesize}
+\captionsetup[figure]{format = myformatfigure,
+              labelsep = colon,
+              indention = 60pt,
+              justification   = justified,
+              singlelinecheck = false,
+              labelfont = footnotesize,
+              textfont = footnotesize}
+              %MEASURES  https://www.namsu.de/Extra/pakete/Caption.html
+
+%%% ==== Numbering of Figures and Tables ==== %%%
+\usepackage{chngcntr}
+
+\counterwithin{figure}{chapter}
+\counterwithout{figure}{section}
+\counterwithout{figure}{subsection}
+\counterwithout{figure}{subsubsection}
+
+
+\counterwithin{table}{chapter}
+\counterwithout{table}{section}
+\counterwithout{table}{subsection}
+\counterwithout{table}{subsubsection}
+
+\usepackage{etoolbox}
+\usepackage[hyphens]{url}
+\urlstyle{same} %font won't be adapted
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+
+%%% ==== Packages for Plots and Tables ==== %%%
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\usepackage{svg}
+
+\usepackage[parfill]{parskip} %No identation
+
+%%% ==== Packages for Pseudocode ==== %%%
+\usepackage{algorithm} 
+\usepackage{algpseudocode}
+
+%%% === Equations ==== %%%
+\usepackage{bm}
